@@ -114,10 +114,19 @@ body {
   opacity: 0.8;
 }
 
+.link .icon { grid-column: 1; }
+.link .ext { grid-column: 3; }
+
 .link .icon svg { width: 22px; height: 22px; }
 .link .ext svg { width: 15px; height: 15px; opacity: 0.55; }
 
-.link .label { text-align: center; }
+.link .label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
 
 .socials {
   display: flex;
