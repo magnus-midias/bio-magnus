@@ -54,31 +54,24 @@ assets/images/      -> logos SVG e favicon (servidos pela raiz em produção via
 
 ## 6. Roteamento
 
-**Não se aplica.** Página única em `/`. Todos os CTAs apontam para URLs externas com `target="_blank"` e `rel="noopener"`.
-
-### Observação de segurança
-Os links externos usam `rel="noopener"`. Recomenda-se evoluir para `rel="noopener noreferrer"` na rodada final de testes (alinhado ao prompt-inicial: links externos precisam de `rel="noopener noreferrer"`).
+**Não se aplica.** Página única em `/`. Todos os CTAs apontam para URLs externas com `target="_blank"` e `rel="noopener noreferrer"`.
 
 ## 7. Decisões arquiteturais
 
 - **Vanilla CSS, sem Tailwind/shadcn.** A página tem uma única view e poucos componentes — introduzir framework adicionaria peso sem retorno. Os tokens da Magnus ficam diretamente em CSS custom properties no `:root` de `src/style.css`. Esta decisão diverge do design-system da `biblioteca-cristian` (que é React + Tailwind + shadcn), mas é proposital: **o design system Magnus é portátil entre stacks**; o que muda é a implementação, não os tokens.
 - **SVGs inline no HTML**, não via `<img>` nem lib de ícones. Permite `stroke: currentColor` nos states de hover e elimina requisição HTTP adicional.
 - **Sem JavaScript de aplicação.** Toda interatividade necessária é coberta por CSS (hover, media queries). Mantém `Total Blocking Time = 0` e bundle mínimo.
-- **`assets/` na raiz (não em `public/`)**, mesmo existindo `public/`. Vite serve `assets/images/*` corretamente em dev e build. Padronizar em `public/` é candidato para a Fase de polimento (reduz surpresa para outros agentes que esperam a convenção Vite).
+- **`assets/` na raiz (não em `public/`)**, `public/` não existe. Vite serve `assets/images/*` corretamente em dev e build.
 - **Fonte via CDN (Google Fonts), não self-hosted.** Simplicidade vence performance de ms aqui. Self-hosting entra como item opcional de polimento (LCP/privacidade).
-- **Deploy Vercel sem `vercel.json`.** Auto-detect do Vite cobre build e output.
+- **`vercel.json`** com headers de segurança (CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy) e `Cache-Control: immutable` para assets com hash do Vite.
 
 ## 8. Lacunas conhecidas / débitos técnicos
 
-- **Acessibilidade:** `.card-bio` é `<main>`, ok; `<nav>` presente; `aria-label` nos socials, ok. Falta `lang` em alguns casos, `skip link` e auditoria completa (contraste já ok com a paleta).
-- **SEO/meta:** só tem `description`. Faltam Open Graph, Twitter Card, canonical, `<meta name="theme-color">`.
-- **Links externos:** usar `rel="noopener noreferrer"` em vez de só `noopener`.
-- **Analytics:** nenhum tracking instalado. Avaliar Plausible/Umami se houver necessidade de medir CTR dos botões.
-- **`public/` vs `assets/`:** duas convenções coexistindo; `public/` está vazio mas existe como padrão Vite. Decidir uma só.
-- **Favicon:** o `assets/images/favicon.svg` só fornece SVG. Sem `.ico` de fallback para browsers legados nem `apple-touch-icon`.
-- **Font loading:** `display=swap` já está no link do Google Fonts — bom. Preconnect ok. Sem `<link rel="preload">` explícito.
-- **Sem testes** (unitários ou E2E). Para esta escala, smoke test manual + checklist de segurança na fase final cobrem.
-- **Sem `vite.config.*`:** funciona, mas se a raiz precisar customizar (base path, env, headers), vai exigir criar um.
+- **favicon.ico:** `assets/images/favicon.svg` cobre browsers modernos e `apple-touch-icon`. Falta `.ico` de fallback para browsers legados — requer ferramenta de conversão (imagemagick ou similar).
+- **OG image PNG:** `og:image` aponta para o SVG do logo. Plataformas como Facebook não renderizam SVG em previews; ideal seria um PNG `1200×630` criado no design system.
+- **Analytics:** nenhum tracking instalado. Avaliar Plausible/Umami se houver necessidade de medir CTR dos botões (fora de escopo por ora).
+- **Sem testes** (unitários ou E2E). Para esta escala, smoke test manual cobre.
+- **Sem `vite.config.*`:** funciona; necessário apenas se precisar customizar base path ou plugins.
 
 ## 9. Fluxo de deploy
 
