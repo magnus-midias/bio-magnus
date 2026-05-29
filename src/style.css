@@ -154,9 +154,10 @@ body {
 
 .link:hover {
   transform: translateY(-3px);
-  background: #000014;
-  border-color: #000014;
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 42, 0.5);
+  background: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 42, 0.2);
 }
 
 .link .icon,
@@ -202,8 +203,9 @@ body {
 }
 
 .socials a:hover {
-  background: #000014;
-  border-color: #000014;
+  background: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
