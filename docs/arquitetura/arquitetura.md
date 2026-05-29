@@ -8,44 +8,53 @@ Documento técnico de referência do projeto. Deve ser atualizado sempre que a a
 
 `bio-magnus` é uma **landing de página única** (link-in-bio) da Magnus Mídias. Servida como site estático, sem backend, sem rotas, sem JavaScript de aplicação. Toda a interação é limitada a hover nos botões e navegação externa via `<a target="_blank">`.
 
-Arquitetura em uma frase: **HTML semântico + CSS com design tokens + SVGs inline, empacotado pelo Vite, servido pela Vercel.**
+Arquitetura em uma frase: **HTML semântico + CSS com design tokens + JS vanilla mínimo + SVGs inline, servido estaticamente pelo Vercel sem etapa de build.**
 
 ## 2. Stack técnica
 
 | Camada | Tecnologia | Observações |
 |---|---|---|
-| Build tool | **Vite 5** (`^5.4.0`) | único dev dependency; sem plugins |
-| Linguagem | HTML5 + CSS3 puro | sem pré-processador (nem Sass/PostCSS customizado) |
-| JS | — | não há script de aplicação. `type: "module"` no `package.json` é só requisito do Vite |
-| Tipografia | **Sora** (Google Fonts) | preconnect + `<link>` no `<head>` de `index.html` |
+| Build tool | **Nenhum** (estático puro) | Vite removido; `vercel.json` com `"framework": null`, `"buildCommand": null`, `"outputDirectory": "."` |
+| Dev server local | `npx serve . --listen 3000` | via `npm run dev`; sem instalação global necessária |
+| Linguagem | HTML5 + CSS3 puro + JS vanilla (script clássico) | sem pré-processador, sem TypeScript, sem `type="module"` |
+| JS | [js/main.js](../../js/main.js) + [js/i18n.js](../../js/i18n.js) | init i18n + lang-toggle |
+| i18n | [translations/pt.js](../../translations/pt.js) + [translations/en.js](../../translations/en.js) | `window.__i18n.pt` / `window.__i18n.en`; toggle salvo em `localStorage` |
+| Tipografia | **Sora** (Google Fonts) | preconnect + `<link>` no `<head>`; pesos 300–800 |
 | Ícones | SVGs inline no HTML | sem biblioteca (Feather-style, `stroke: currentColor`) |
-| Package manager | npm | lockfile: `package-lock.json` |
-| Hosting | **Vercel** | repo: `github.com/magnus-midias/bio-magnus`, branch `main` |
+| Package manager | npm | lockfile: `package-lock.json` (sem dependências) |
+| Hosting | **Vercel** | repo: `github.com/magnus-midias/bio-magnus`, branch `main`; deploy direto sem build |
 
 ## 3. Divisão do software
 
 ```
-index.html          -> estrutura semântica + SVGs inline + carregamento de fonte e CSS
-src/style.css       -> tokens da marca (CSS vars) + estilos de todos os blocos da página
-assets/images/      -> logos SVG e favicon (servidos pela raiz em produção via Vite)
+index.html              -> estrutura semântica + SVGs inline + data-i18n + carregamento de fonte e CSS
+src/style.css           -> tokens da marca (CSS vars) + estilos de todos os blocos + lang-toggle
+js/
+  main.js               -> init i18n + conecta lang-toggle
+  i18n.js               -> engine PT/EN: lê data-i18n, aplica dict, salva em localStorage
+translations/
+  pt.js                 -> window.__i18n.pt — dicionário em português
+  en.js                 -> window.__i18n.en — dicionário em inglês
+assets/images/          -> logos SVG e favicon (servidos diretamente pela raiz)
 ```
 
 ### Blocos da página (top-down em [index.html](../../index.html))
 1. `<main class="card-bio">` — container central (`max-width: 460px`, flex column, centralizado).
 2. `.logo-wrap` + `.logo-mark` — logo dark (72px, reduz para 60px em < 420px).
-3. `.tagline` — "Tecnologia · IA · Marketing" em eyebrow (uppercase, tracking alto, opacity 0.6).
-4. `<nav class="links">` — três `<a class="link">` em grid 3 colunas (`ícone | label | ícone externo`):
-   - Diagnóstico Gratuito → `diagnostico.magnusmidias.com`
+3. `.lang-toggle` — botões PT/EN; preferência salva em `localStorage` via `js/i18n.js`.
+4. `.tagline` — "Marketing · Tecnologia · IA" em eyebrow (uppercase, tracking alto, opacity 0.6).
+5. `<nav class="links">` — três `<a class="link">` em grid 3 colunas (`ícone | label | ícone externo`), fundo navy por padrão, hover branco com borda navy:
    - Site Oficial → `magnusmidias.com`
-   - WhatsApp → `wa.me/5555999062078` (mensagem pré-preenchida)
-5. `.socials` — 3 ícones circulares (pill): Instagram, LinkedIn, YouTube.
-6. `.footer` + `.copy` — tagline secundária + copyright.
+   - Falar no WhatsApp → `wa.me/5555999062078` (mensagem pré-preenchida)
+   - Enviar E-mail → `mailto:contato@magnusmidias.com`
+6. `.socials` — 3 ícones circulares (pill) em navy: Instagram, LinkedIn, YouTube.
+7. `.footer` + `.copy` — tagline "Marketing estratégico. Tecnologia aplicada. IA onde gera resultado." + copyright.
 
 ## 4. Ferramentas utilizadas
 
-- **Vite 5**: dev server + bundler de produção. Configuração padrão (sem `vite.config.*`).
+- **npx serve**: dev server local (`npm run dev`). Sem instalação global necessária.
 - **Google Fonts**: CDN para `Sora` (300–800).
-- **Vercel**: deploy automático no push para `main`. Build Command `npm run build`, Output `dist/`.
+- **Vercel**: deploy automático no push para `main`. Sem build — serve diretamente a raiz do repositório.
 - **Git/GitHub**: versionamento.
 
 ## 5. Banco de dados / modelo de dados
@@ -76,13 +85,15 @@ assets/images/      -> logos SVG e favicon (servidos pela raiz em produção via
 ## 9. Fluxo de deploy
 
 1. Commit em `main` no repositório `magnus-midias/bio-magnus`.
-2. Vercel detecta push e roda `npm run build`.
-3. Serve `dist/` no domínio configurado.
+2. Vercel detecta push e serve a raiz do repositório diretamente (sem build).
+3. `vercel.json` aplica headers de segurança e regras de cache.
 
 ## 10. Referências cruzadas
 
 - Código de entrada: [index.html](../../index.html)
 - Estilos e tokens: [src/style.css](../../src/style.css)
-- Assets de marca servidos: [assets/images/](../../assets/images/)
+- JS: [js/main.js](../../js/main.js), [js/i18n.js](../../js/i18n.js)
+- Traduções: [translations/pt.js](../../translations/pt.js), [translations/en.js](../../translations/en.js)
+- Assets de marca: [assets/images/](../../assets/images/)
 - Design system canônico: [docs/design-system/design-system.md](../design-system/design-system.md)
 - CLAUDE.md (contexto geral): [CLAUDE.md](../../CLAUDE.md)
