@@ -21,17 +21,18 @@ Identidade visual: Magnus Mídias (navy profundo `#00002B` sobre off-white `#F4F
 
 ## Stack
 
-- **Build tool:** Vite 5 (`vite` v5.4.0 em devDependencies).
-- **Linguagens:** HTML5 + CSS puro + SVG inline. Sem JavaScript de aplicação (apenas o módulo de estilos carregado via Vite).
+- **Build tool:** nenhum. Site estático puro — sem Vite, sem bundler.
+- **Dev server local:** `npx serve . --listen 3000` via `npm run dev`.
+- **Linguagens:** HTML5 + CSS puro + JavaScript vanilla (script clássico, sem `type="module"`) + SVG inline.
 - **Frameworks:** nenhum. **Sem** React, Tailwind, shadcn/ui ou bibliotecas de UI. Tokens declarados diretamente em CSS custom properties no `:root` de [src/style.css](src/style.css).
+- **JS:** [js/main.js](js/main.js) (init i18n + lang-toggle) + [js/i18n.js](js/i18n.js) (engine PT/EN).
+- **i18n:** [translations/pt.js](translations/pt.js) e [translations/en.js](translations/en.js) — `window.__i18n`; toggle salvo em `localStorage`.
 - **Fonte:** `Sora` via Google Fonts (preconnect + `<link>` em [index.html](index.html)).
-- **Deploy:** Vercel (conectada ao repositório `https://github.com/magnus-midias/bio-magnus.git`, branch `main`). Build: `npm run build`. Output: `dist/`. Sem `vercel.json` customizado.
+- **Deploy:** Vercel (conectada ao repositório `https://github.com/magnus-midias/bio-magnus.git`, branch `main`). Sem build — serve a raiz diretamente. `vercel.json` com `framework: null`, `buildCommand: null`, `outputDirectory: "."`.
 
 ## Scripts de desenvolvimento
 
-- `npm run dev` — servidor de desenvolvimento do Vite.
-- `npm run build` — gera o build de produção em `dist/`.
-- `npm run preview` — pré-visualiza localmente o build.
+- `npm run dev` — inicia servidor estático local na porta 3000 via `npx serve`.
 
 ## Marca / identidade visual
 

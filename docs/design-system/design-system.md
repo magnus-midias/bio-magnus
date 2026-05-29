@@ -16,7 +16,7 @@ Qualquer alteração com impacto visual deve ler este arquivo antes e atualizá-
 - **Tom de voz:** direto, sóbrio, anti-hype. Sem jargão desnecessário, sem "complexidade performática". Frases curtas, afirmativas, com contraste (ex.: "Não vendemos ferramenta. Não entregamos relatório.").
 - **Público-alvo:** empresas que já faturam e querem escalar com previsibilidade, crescer com margem, e substituir processo manual por operação estruturada.
 - **Personalidade visual:** **navy profundo (quase preto) sobre off-white**, tipografia `Sora` em todos os pesos, layout amplo, alto contraste em neutros frios, cantos generosos, zero poluição gráfica. Premium minimalista.
-- **Aplicação no `bio-magnus`:** tudo isso condensado em uma página única mobile-first — logo centralizada, eyebrow de três palavras (Tecnologia · IA · Marketing), três botões primários empilhados e três socials em pill.
+- **Aplicação no `bio-magnus`:** tudo isso condensado em uma página única mobile-first — logo centralizada, lang-toggle PT/EN, eyebrow de três palavras (Marketing · Tecnologia · IA), três botões de link empilhados (navy por padrão, hover branco com borda navy) e três socials em pill navy.
 
 ## 2. Tipografia
 
@@ -86,9 +86,11 @@ Mantida aqui como referência para projetos que **precisem** de variações (ex.
 
 Padrão Magnus para bordas sobre off-white: `rgba(0, 0, 42, 0.08)` (praticamente navy com 8% de opacidade). Variações em uso no `bio-magnus`:
 
-- `.link` (estado normal): `1px solid rgba(0, 0, 42, 0.08)`.
-- `.socials a` (estado normal): `1px solid rgba(0, 0, 42, 0.15)`.
-- `.link:hover` box-shadow: `0 20px 40px -20px rgba(0, 0, 42, 0.35)`.
+- `.link` (estado normal): fundo navy `#00002B`, borda `1px solid var(--color-primary)`.
+- `.link:hover`: fundo branco, borda `1px solid var(--color-primary)`, cor navy — hover "abre" para o claro.
+- `.link:hover` box-shadow: `0 20px 40px -20px rgba(0, 0, 42, 0.2)`.
+- `.socials a` (estado normal): fundo navy, borda `1px solid var(--color-primary)`.
+- `.socials a:hover`: fundo branco, borda navy, cor navy.
 
 ### 3.5 Gradientes
 
@@ -129,13 +131,13 @@ Propriedades em uso:
 
 | Propriedade | Valor |
 |---|---|
-| Background (normal) | `#fff` |
-| Border (normal) | `1px solid rgba(0, 0, 42, 0.08)` |
+| Background (normal) | `var(--color-primary)` (navy `#00002B`) |
+| Border (normal) | `1px solid var(--color-primary)` |
 | Border radius | `var(--radius-md)` (12px) |
 | Padding | `18px 20px` (≥421px) / `16px` (≤420px) |
-| Color | `var(--color-primary)` |
+| Color (normal) | `var(--color-text-inverse)` (off-white) |
 | Font | `Sora` 600, 0.95rem, `letter-spacing: -0.01em` |
-| Hover | `translateY(-3px)`, background → navy, color → off-white, box-shadow `0 20px 40px -20px rgba(0,0,42,0.35)` |
+| Hover | `translateY(-3px)`, background → `#fff`, color → navy, borda navy, box-shadow `0 20px 40px -20px rgba(0,0,42,0.2)` |
 | Transition | `0.25s var(--ease)` para transform, border-color, box-shadow, background, color |
 
 ### 5.3 Social pill (`.socials a`)
@@ -144,9 +146,11 @@ Propriedades em uso:
 |---|---|
 | Tamanho | `44×44px` |
 | Border radius | `999px` |
-| Border | `1px solid rgba(0, 0, 42, 0.15)` |
+| Background (normal) | `var(--color-primary)` (navy) |
+| Border (normal) | `1px solid var(--color-primary)` |
+| Color (normal) | `var(--color-text-inverse)` (off-white) |
 | Ícone | SVG 18×18, `stroke: currentColor` |
-| Hover | background → navy, color → off-white, `translateY(-2px)` |
+| Hover | background → `#fff`, color → navy, borda navy, `translateY(-2px)` |
 | Transition | `0.2s var(--ease)` |
 
 ### 5.4 Referências canônicas (landing Magnus — para reuso em outros projetos)
@@ -201,18 +205,18 @@ Propriedades em uso:
 Ícones **próprios da marca** (quando houver). A Magnus ainda não tem iconografia proprietária além da letterform da logo — pasta existe como reserva estrutural.
 
 **Iconografia funcional em uso:** SVGs inline no HTML em estilo Feather (viewBox `0 0 24 24`, `stroke: currentColor`, `stroke-width: 2`, `stroke-linecap/linejoin: round`). Ícones usados:
-- Link 1 (Diagnóstico): checkmark em círculo + ícone de "link externo".
-- Link 2 (Site Oficial): globo + "link externo".
-- Link 3 (WhatsApp): balão de conversa + "link externo".
+- Link 1 (Site Oficial): globo + ícone de "link externo".
+- Link 2 (Falar no WhatsApp): balão de conversa + "link externo".
+- Link 3 (Enviar E-mail): envelope + "link externo".
 - Socials: Instagram (rect + círculo interno), LinkedIn (silhueta), YouTube (retângulo + play).
 
 Ao adicionar novos links, reutilizar o mesmo estilo (Feather 24×24, `stroke-width: 2`) para consistência.
 
 ### 7.4 Relação com a pasta do app
 
-- Assets **servidos em produção** vivem em [assets/images/](../../assets/images/) (Vite serve a partir da raiz). As cópias em `docs/design-system/` são a **versão canônica/documentada** da marca; as em `assets/images/` são a **versão de entrega**.
+- Assets **servidos em produção** vivem em [assets/images/](../../assets/images/) na raiz do projeto (sem etapa de build; a Vercel serve diretamente).
+- As cópias em `docs/design-system/` são a **versão canônica/documentada** da marca; as em `assets/images/` são a **versão de entrega**.
 - Ao promover um novo asset de `docs/design-system/` para o app: copiar para `assets/images/`, referenciar em `index.html` ou `src/style.css`, e registrar o caminho aqui na seção correspondente.
-- Discussão aberta (ver arquitetura): migrar assets para `public/` como convenção Vite — decisão de polimento.
 
 ## 8. Referências cruzadas
 
