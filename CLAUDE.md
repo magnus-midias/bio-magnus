@@ -17,11 +17,13 @@ Arquivo de contexto que o agente deve consultar **antes de qualquer alteração*
 `bio-magnus` é o **link-in-bio oficial da Magnus Mídias** — a página de destino usada no link da bio do Instagram (`@magnusmidias`) e demais redes sociais. Função única: concentrar os CTAs principais da marca em um só lugar, mobile-first.
 
 - **Público:** seguidores das redes sociais da Magnus que chegam pelo link da bio.
-- **Objetivo de negócio:** converter tráfego social em diagnóstico gratuito, site institucional e WhatsApp.
+- **Objetivo de negócio:** converter tráfego social em conversa comercial (site institucional, WhatsApp ou e-mail).
 - **Links ativos (em ordem):**
-  1. **Diagnóstico Gratuito** — `https://diagnostico.magnusmidias.com`.
-  2. **Site Oficial** — `https://magnusmidias.com`.
-  3. **WhatsApp** — `https://wa.me/5555999062078` com mensagem pré-preenchida.
+  1. **Site Oficial** — `https://magnusmidias.com`.
+  2. **WhatsApp** — `https://wa.me/5555999062078` com mensagem pré-preenchida.
+  3. **E-mail** — `mailto:contato@magnusmidias.com`.
+
+  > O link de Diagnóstico Gratuito foi removido e substituído pelo de e-mail (ver `docs/historico/08-ajustes-visuais-links-footer-2026-05-29.md`). Se os links mudarem de novo, atualizar aqui **e** no `llms.txt`, que descreve os destinos para rastreadores de IA.
 - **Social icons:** Instagram, LinkedIn, YouTube (`@magnusmidias` / `/company/magnusmidias` / `@magnusmidias`).
 - **Restrições de escopo:** página única (sem rotas), sem backend, sem analytics embarcado no momento, sem formulário. Tudo estático.
 
@@ -57,17 +59,24 @@ Magnus Mídias — consultoria de Tecnologia com IA e Marketing Estratégico.
 ```
 bio-magnus/
 ├── index.html              # página única (estrutura + SVGs inline)
+├── favicon.svg             # favicon set completo servido na raiz
+├── favicon-*.png           #   (16/32/48/192/512), apple-touch-icon 180, favicon.ico
+├── site.webmanifest
+├── robots.txt              # descoberta
+├── sitemap.xml
+├── llms.txt                # descreve a página para rastreadores de IA
 ├── src/
 │   └── style.css           # tokens da marca + estilos da página
 ├── assets/
 │   └── images/             # logo-dark.svg, logo-light.svg, favicon.svg (servidos em produção)
-├── public/                 # (não usado no momento)
 ├── dist/                   # build de produção (gerado, ignorado no git)
 ├── docs/
-│   ├── arquitetura/        # arquitetura.md e documentos técnicos
-│   ├── instrucoes/         # instrucoes.md + planos de ação por fases
+│   ├── constitution.md     # princípios invioláveis: ler primeiro
+│   ├── prd-e-arquitetura/  # PRD, plano-de-acao, arquitetura, instrucoes
 │   ├── historico/          # NN-descricao-curta-AAAA-MM-DD.md (um por alteração)
-│   ├── design-system/      # design-system.md + logos/ icones/ favicon/
+│   ├── design-system/      # MASTER.md (fonte) + design-system.md + logos/ icones/ favicon/
+│   ├── framework/          # framework.md do tipo de projeto (do cofre)
+│   ├── specs/              # especificações por feature (SDD)
 │   └── prompt-inicial/     # prompt padrão de início de projeto (referência)
 ├── CLAUDE.md               # este arquivo
 ├── package.json
