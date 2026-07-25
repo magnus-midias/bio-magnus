@@ -1,0 +1,31 @@
+# Magnus Midias: link na bio
+
+> Pagina unica de links da Magnus Midias, agencia de marketing estrategico e tecnologia com IA sediada na Grande Florianopolis (SC, Brasil). E o destino do link na bio do Instagram e das demais redes sociais da agencia.
+
+A Magnus Midias trabalha com diagnostico, implementacao pratica e acompanhamento continuo. A promessa central e crescer com inteligencia, nao com mais esforco manual. Nao vendemos ferramenta e nao entregamos relatorio.
+
+Esta pagina existe para concentrar os pontos de contato da marca em um so lugar, com prioridade para mobile. Nao tem formulario, backend nem conteudo editorial.
+
+## Destinos a partir desta pagina
+
+- [Site oficial](https://magnusmidias.com): landing page institucional da Magnus, com servicos, metodo e para quem o trabalho serve.
+- [WhatsApp](https://wa.me/5555999062078): contato comercial direto, com mensagem pre-preenchida.
+- [E-mail](mailto:contato@magnusmidias.com): contato por e-mail.
+
+## Redes
+
+- Instagram: https://instagram.com/magnusmidias
+- LinkedIn: https://linkedin.com/company/magnusmidias
+- YouTube: https://youtube.com/@magnusmidias
+
+## Outras propriedades da Magnus
+
+- https://magnusmidias.com: site institucional (canonico da marca).
+- https://diagnostico.magnusmidias.com: diagnostico gratuito de Marketing ou de Tecnologia e IA.
+- https://cristian.magnusmidias.com: portfolio de desenvolvimento web e trafego pago.
+
+## Notas para rastreadores
+
+- Idiomas: portugues do Brasil (padrao) e ingles, alternados por um seletor no proprio cliente.
+- Stack: site estatico HTML, CSS e JavaScript, sem framework. Hospedagem na Vercel.
+- Conteudo canonico da marca: https://magnusmidias.com

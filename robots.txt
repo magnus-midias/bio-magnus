@@ -1,0 +1,5 @@
+# bio.magnusmidias.com - link na bio da Magnus Midias
+User-agent: *
+Allow: /
+
+Sitemap: https://bio.magnusmidias.com/sitemap.xml
