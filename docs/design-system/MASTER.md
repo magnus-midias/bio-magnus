@@ -51,6 +51,18 @@ Pesos: light 300 · regular 400 · medium 500 · semibold 600 · bold 700 · ext
 Aliases: `--color-bg`->off-white, `--color-bg-alt`->off-white-alt, `--color-primary`/`--color-text`->navy, `--surface-dark`->navy.
 Temas v2 opt-in (`data-theme` no `<html>`): `azul #12296B`; `offwhite` (inversao, tinta off-white sobre canvas navy). Sora e verde WhatsApp nao mudam.
 
+**Sem gradiente em superficie.** O ritmo vertical vem da alternancia de secoes solidas (off-white -> off-white alt -> navy), nunca de degrade dentro de uma secao. A unica excecao prevista na fonte e profundidade em **tema escuro**, e so ai usando a escala navy estendida abaixo, que existe no cofre exatamente para isso e e de uso raro (`branding/design-system/tokens/colors.css`). Nao vale para superficie clara e nao vale para botao. Gradiente em `mask-image` nao conta: e recorte, nao superficie.
+
+| token (escala navy estendida) | valor |
+|---|---|
+| `--navy-dark` | `hsl(240 100% 6%)` |
+| `--navy-base` | `hsl(240 100% 8%)` (≈ `#00002B`) |
+| `--navy-mid` | `hsl(240 100% 10%)` |
+| `--navy-light` | `hsl(240 100% 12%)` |
+| `--navy-lighter` | `hsl(240 100% 14%)` |
+| `--silver` | `hsl(240 20% 93%)` |
+
+
 ## Border radius e espacamentos
 ```css
 :root {
