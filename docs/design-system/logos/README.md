@@ -1,23 +1,13 @@
-# Logos
+# Logos (Magnus)
 
-Arquivos-fonte das logos da marca.
+Logos reais da marca, copiados do cofre (`03-empresas/magnus/branding/design-system/assets/`). Formato SVG (vetor).
 
-## Formatos aceitos
-- SVG (preferencial, para uso em web).
-- PNG com fundo transparente (para casos onde SVG nao e possivel).
-- PDF/AI (opcional, arquivo editavel para designers).
+## Arquivos nesta pasta
+- `logo-dark.svg` : usar sobre fundo claro/off-white/branco.
+- `logo-light.svg` : usar sobre navy/preto.
 
-## Nomenclatura (ASCII puro, kebab-case, sem acentos)
+## Regras
+Escolha pela **contraste**, nao pela estetica. Altura minima 28px (header) / 40px (footer). Nao deformar, recolorir fora da paleta, somar sombra, nem usar sobre foto sem overlay.
 
-```
-logo-<variacao>[-<modificador>].<ext>
-```
-
-Exemplos:
-- `logo-principal.svg`
-- `logo-dark.svg`
-- `logo-light.svg`
-- `logo-monocromatico.svg`
-- `logo-horizontal.svg`
-- `logo-vertical.svg`
-- `logo-icone.svg`
+## O que NAO esta aqui
+Raster PNG (`logo-mark-navy.png`, `logo-mark-light.png`) e kit social ficam no workspace do Claude Design. Exportavel do SVG se precisar.

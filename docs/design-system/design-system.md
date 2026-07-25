@@ -1,5 +1,9 @@
 # Design System — bio-magnus (Magnus Mídias)
 
+> **Este arquivo nao e a fonte de verdade da marca.** A fonte e `MASTER.md`, nesta mesma pasta: ele traz o snapshot dos tokens reais da Magnus e a secao **Neste projeto** com o que e especifico daqui.
+>
+> O que sobrevive neste arquivo e o **detalhamento de componentes** do projeto (medidas, estados, variantes), util na hora de implementar. Se algo aqui divergir do `MASTER.md`, o `MASTER.md` vence e este arquivo deve ser corrigido.
+
 Este documento é a **fonte única de verdade sobre a identidade visual da Magnus Mídias aplicada ao projeto `bio-magnus`**. A identidade Magnus é canônica e portátil entre projetos: o que varia de um projeto para outro é apenas a **implementação** (vanilla CSS aqui, React + Tailwind + shadcn na `biblioteca-cristian`, etc.).
 
 Qualquer alteração com impacto visual deve ler este arquivo antes e atualizá-lo depois, se introduzir ou alterar um token.

@@ -1,5 +1,13 @@
 # CLAUDE.md — bio-magnus
 
+> **Ordem de leitura obrigatoria antes de qualquer alteracao:**
+> 1. `docs/constitution.md` : principios inviolaveis, seguranca, SEO, contas. Supersede este arquivo e qualquer outro.
+> 2. `docs/prd-e-arquitetura/instrucoes.md` : regras de trabalho.
+> 3. `docs/historico/` em ordem crescente.
+> 4. Se houver impacto visual, `docs/design-system/MASTER.md` (fonte da marca; `design-system.md` e so o detalhamento de componentes).
+>
+> Depois de qualquer alteracao relevante: registro em `docs/historico/NN-descricao-AAAA-MM-DD.md` e commit em Conventional Commits.
+
 Arquivo de contexto que o agente deve consultar **antes de qualquer alteração** no projeto.
 
 ---
@@ -17,7 +25,7 @@ Arquivo de contexto que o agente deve consultar **antes de qualquer alteração*
 - **Social icons:** Instagram, LinkedIn, YouTube (`@magnusmidias` / `/company/magnusmidias` / `@magnusmidias`).
 - **Restrições de escopo:** página única (sem rotas), sem backend, sem analytics embarcado no momento, sem formulário. Tudo estático.
 
-Identidade visual: Magnus Mídias (navy profundo `#00002B` sobre off-white `#F4F4F9`, tipografia `Sora`). Detalhes completos em [docs/design-system/design-system.md](docs/design-system/design-system.md).
+Identidade visual: Magnus Mídias (navy profundo `#00002B` sobre off-white `#F4F4F9`, tipografia `Sora`). Detalhes completos em [docs/design-system/MASTER.md](docs/design-system/MASTER.md).
 
 ## Stack
 
@@ -40,7 +48,7 @@ Magnus Mídias — consultoria de Tecnologia com IA e Marketing Estratégico.
 
 - Tom de voz: direto, sóbrio, anti-hype. Frases curtas, afirmativas, com contraste.
 - Estética: premium minimalista — navy profundo sobre off-white, `Sora` em todos os pesos, alto contraste em neutros frios, cantos generosos (`6 / 12 / 24 px`), zero poluição gráfica.
-- Documento canônico: [docs/design-system/design-system.md](docs/design-system/design-system.md). Assets em [docs/design-system/logos/](docs/design-system/logos/), [docs/design-system/icones/](docs/design-system/icones/), [docs/design-system/favicon/](docs/design-system/favicon/).
+- Documento canônico: [docs/design-system/MASTER.md](docs/design-system/MASTER.md). Assets em [docs/design-system/logos/](docs/design-system/logos/), [docs/design-system/icones/](docs/design-system/icones/), [docs/design-system/favicon/](docs/design-system/favicon/).
 
 ---
 
@@ -67,10 +75,10 @@ bio-magnus/
 ```
 
 ### Ponteiros
-- Regras de trabalho e fluxo obrigatório: [docs/instrucoes/instrucoes.md](docs/instrucoes/instrucoes.md)
-- Arquitetura técnica: [docs/arquitetura/arquitetura.md](docs/arquitetura/arquitetura.md)
+- Regras de trabalho e fluxo obrigatório: [docs/prd-e-arquitetura/instrucoes.md](docs/prd-e-arquitetura/instrucoes.md)
+- Arquitetura técnica: [docs/prd-e-arquitetura/arquitetura.md](docs/prd-e-arquitetura/arquitetura.md)
 - Histórico de alterações: [docs/historico/](docs/historico/)
-- Design system e assets da marca: [docs/design-system/design-system.md](docs/design-system/design-system.md)
+- Design system e assets da marca: [docs/design-system/MASTER.md](docs/design-system/MASTER.md)
 
 ---
 
@@ -93,13 +101,13 @@ Onde `NN` é o próximo número sequencial disponível (2 dígitos), `descricao-
 
 ### Antes de alterar
 1. Ler TODO o histórico em `docs/historico/` em ordem numérica.
-2. Ler `docs/arquitetura/arquitetura.md`.
-3. Se houver impacto visual, ler também `docs/design-system/design-system.md`.
+2. Ler `docs/prd-e-arquitetura/arquitetura.md`.
+3. Se houver impacto visual, ler também `docs/design-system/MASTER.md`.
 
 ### Depois de alterar
 1. Criar o arquivo de histórico correspondente.
-2. Atualizar `docs/arquitetura/arquitetura.md` se a arquitetura mudou.
-3. Atualizar `docs/instrucoes/instrucoes.md` se mudou fluxo de trabalho.
+2. Atualizar `docs/prd-e-arquitetura/arquitetura.md` se a arquitetura mudou.
+3. Atualizar `docs/prd-e-arquitetura/instrucoes.md` se mudou fluxo de trabalho.
 4. Atualizar `docs/design-system/` se mexeu em tokens, componentes, animações ou assets.
 
-Detalhes completos em [docs/instrucoes/instrucoes.md](docs/instrucoes/instrucoes.md).
+Detalhes completos em [docs/prd-e-arquitetura/instrucoes.md](docs/prd-e-arquitetura/instrucoes.md).
