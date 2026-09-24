@@ -1,10 +1,10 @@
 window.__i18n = window.__i18n || {};
 window.__i18n.en = {
-  'meta.description': 'Magnus Mídias. Digital acquisition and sales funnels. Visit our website, chat on WhatsApp or send an email.',
+  'meta.description': 'Magnus Mídias. Digital acquisition and sales funnels, with AI. Visit our website, chat on WhatsApp or send an email.',
   'meta.og.title': 'Magnus Mídias | Links',
-  'meta.og.description': 'Digital acquisition and sales funnels. Visit our website, chat on WhatsApp or send an email.',
+  'meta.og.description': 'Digital acquisition and sales funnels, with AI. Visit our website, chat on WhatsApp or send an email.',
   'skip.link': 'Skip to content',
-  'tagline': 'Digital acquisition and sales funnels',
+  'tagline': 'Digital acquisition and sales funnels, with AI',
   'link.site': 'Official Website',
   'link.whatsapp': 'Chat on WhatsApp',
   'link.email': 'Send an Email',

@@ -1,10 +1,10 @@
 window.__i18n = window.__i18n || {};
 window.__i18n.pt = {
-  'meta.description': 'Magnus Mídias. Funis de aquisição e vendas para o digital. Acesse o site, fale no WhatsApp ou envie um e-mail.',
+  'meta.description': 'Magnus Mídias. Funis de aquisição e vendas para o digital, com IA. Acesse o site, fale no WhatsApp ou envie um e-mail.',
   'meta.og.title': 'Magnus Mídias | Links',
-  'meta.og.description': 'Funis de aquisição e vendas para o digital. Acesse o site, fale no WhatsApp ou envie um e-mail.',
+  'meta.og.description': 'Funis de aquisição e vendas para o digital, com IA. Acesse o site, fale no WhatsApp ou envie um e-mail.',
   'skip.link': 'Ir para o conteúdo',
-  'tagline': 'Funis de aquisição e vendas para o digital',
+  'tagline': 'Funis de aquisição e vendas para o digital, com IA',
   'link.site': 'Site Oficial',
   'link.whatsapp': 'Falar no WhatsApp',
   'link.email': 'Enviar E-mail',
