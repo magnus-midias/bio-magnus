@@ -54,7 +54,10 @@ ul, ol { list-style: none; }
 body {
   display: flex;
   justify-content: center;
-  padding: 56px 20px 48px;
+  /* 100svh, e não 100vh: no celular o vh conta a barra do navegador
+     que some ao rolar, e a página nasce mais alta que a tela */
+  min-height: 100svh;
+  padding: clamp(32px, 7vw, 64px) 22px clamp(36px, 8vw, 64px);
 }
 
 .card-bio {
@@ -64,13 +67,26 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* a página é curta e a tela é alta: em vez de empilhar tudo no
+     topo e deixar um vazio embaixo, os três blocos se distribuem
+     pela altura disponível. Os respiros viram espaço elástico com
+     mínimo garantido, então nunca comprimem numa tela baixa. */
+  justify-content: space-between;
+  gap: clamp(36px, 7vh, 72px);
+  flex: 1;
+}
+
+.bio-topo, .bio-base {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo-wrap {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .logo-mark {
@@ -136,7 +152,7 @@ body {
 .kicker {
   color: var(--color-primary);
   opacity: 0.55;
-  margin-top: 18px;
+  margin-top: clamp(22px, 5vw, 30px);
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -147,7 +163,7 @@ body {
 .tagline {
   color: var(--color-primary);
   opacity: 0.78;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 1.0625rem;
   line-height: 1.4;
   letter-spacing: -0.012em;
@@ -160,10 +176,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* 16px entre alvos: o erro de toque vem mais do aperto entre
-     eles do que do tamanho de cada um (NN/g) */
-  gap: 16px;
-  margin-top: 34px;
+  gap: 14px;
 }
 
 .link {
@@ -173,7 +186,6 @@ body {
   align-items: center;
   gap: 12px;
   padding: 18px 20px;
-  min-height: 56px;
   background: var(--color-primary);
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-md);
@@ -219,7 +231,6 @@ body {
 .socials {
   display: flex;
   gap: 12px;
-  margin-top: 32px;
 }
 
 .socials a {
@@ -246,7 +257,7 @@ body {
 .socials svg { width: 18px; height: 18px; }
 
 .footer {
-  margin-top: 32px;
+  margin-top: clamp(26px, 5vw, 34px);
   color: var(--color-primary);
   opacity: 0.65;
   font-size: 0.9rem;
@@ -256,16 +267,15 @@ body {
 }
 
 .copy {
-  margin-top: 16px;
+  margin-top: 14px;
   color: var(--color-primary);
   opacity: 0.4;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
 }
 
-@media (max-width: 420px) {
-  .logo-mark { height: 60px; }
-  .link { padding: 16px; font-size: 0.9rem; }
+@media (max-width: 400px) {
+  .link { padding: 17px 18px; }
 }
 
 

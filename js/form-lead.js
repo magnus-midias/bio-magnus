@@ -311,7 +311,7 @@ window.MagnusLead = (function () {
     window.setTimeout(function () {
       carregando(false);
       enviando = false;
-      if (cfg.modo !== 'inline') fechar();
+      fechar();
       form.reset();
       Array.prototype.forEach.call(modal.querySelectorAll('.lead-chip'), function (c) {
         c.classList.remove('lead-chip--active');
@@ -327,69 +327,33 @@ window.MagnusLead = (function () {
 
   function init(opcoes) {
     cfg = opcoes || {};
-    /* MODO. 'modal' (padrão) para páginas curtas, onde o formulário é
-       um destino. 'inline' para a LP longa, onde ele é uma SEÇÃO: ali
-       o modal destruiria a referência de rolagem que a pessoa usa
-       como mapa, e o botão da nav já serve de acionador rolando até
-       ele. A conversão entre os dois dá empate na melhor evidência
-       que existe (10 testes da Leadpages: 44% contra 45%), então a
-       escolha é de contexto e não de taxa. */
-    var inline = cfg.modo === 'inline';
     if (!cfg.origem) {
       /* sem origem o lead entra no banco sem saber de onde veio,
          que é pior que não entrar: vira dado que mente */
       console.warn('MagnusLead: falta a origem.');
       return;
     }
-    modal = document.getElementById(inline ? 'lead-inline' : 'lead-modal');
+    modal = document.getElementById('lead-modal');
     if (!modal) return;
 
     TRACKING = rastreio();
 
-    if (inline) {
-      /* o botão não abre nada: rola até a seção e põe o foco no 1º campo */
-      document.querySelectorAll('[data-open-form]').forEach(function (b) {
-        b.addEventListener('click', function (ev) {
-          ev.preventDefault();
-          modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          var campo = modal.querySelector('#lead-nome');
-          if (campo) window.setTimeout(function () { campo.focus({ preventScroll: true }); }, 450);
-          evento('form:abriu');
-        });
-      });
-      /* numa seção visível, "abriu" é ela entrar na tela */
-      if ('IntersectionObserver' in window) {
-        var obs = new IntersectionObserver(function (ents) {
-          ents.forEach(function (e) {
-            if (e.isIntersecting) { evento('form:abriu'); obs.disconnect(); }
-          });
-        }, { threshold: 0.4 });
-        obs.observe(modal);
-      }
-    } else {
-      document.querySelectorAll('[data-open-form]').forEach(function (b) {
-        b.addEventListener('click', function (ev) { ev.preventDefault(); abrir(); });
-      });
-      modal.querySelectorAll('[data-close-form]').forEach(function (el) {
-        el.addEventListener('click', fechar);
-      });
-      document.addEventListener('keydown', function (ev) {
-        if (ev.key === 'Escape' && !modal.hidden) fechar();
-        prenderFoco(ev);
-      });
+    document.querySelectorAll('[data-open-form]').forEach(function (b) {
+      b.addEventListener('click', function (ev) { ev.preventDefault(); abrir(); });
+    });
+    modal.querySelectorAll('[data-close-form]').forEach(function (el) {
+      el.addEventListener('click', fechar);
+    });
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape' && !modal.hidden) fechar();
+      prenderFoco(ev);
+    });
 
-      /* o voltar do navegador (e o gesto do celular) fecha o modal */
-      window.addEventListener('popstate', function () {
-        marcou = false;
-        if (!modal.hidden) fechar(true);
-        else if (window.location.hash === HASH) abrir(true);
-      });
-    }
-
-    /* FORM START: o primeiro campo tocado, uma vez por sessão */
-    modal.querySelectorAll('.lead-input, .lead-chip').forEach(function (el) {
-      el.addEventListener('focus', function () { evento('form:comecou'); }, { once: true });
-      el.addEventListener('click', function () { evento('form:comecou'); }, { once: true });
+    /* o voltar do navegador (e o gesto do celular) fecha o modal */
+    window.addEventListener('popstate', function () {
+      marcou = false;
+      if (!modal.hidden) fechar(true);
+      else if (window.location.hash === HASH) abrir(true);
     });
 
     ligarChips();
@@ -397,11 +361,9 @@ window.MagnusLead = (function () {
     var form = modal.querySelector('#lead-form');
     if (form) form.addEventListener('submit', enviar);
 
-    if (!inline) {
-      /* a rota direta e a prévia abrem o modal já aberto */
-      if (window.location.hash === HASH) abrir(true);
-      else if (new URLSearchParams(window.location.search).get('form') === '1') abrir();
-    }
+    /* a rota direta e a prévia abrem o modal já aberto */
+    if (window.location.hash === HASH) abrir(true);
+    else if (new URLSearchParams(window.location.search).get('form') === '1') abrir();
   }
 
   return { init: init, abrir: abrir, fechar: fechar };

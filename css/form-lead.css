@@ -188,26 +188,3 @@ body.modal-open { overflow: hidden }
   .lead-modal__panel { padding: 28px 20px 20px; max-height: calc(100vh - 24px) }
   .lead-row { grid-template-columns: 1fr }
 }
-
-/* ============================================================
-   VARIANTE EMBUTIDA
-   Mesmo formulário, sem o modal em volta. Usada na LP longa,
-   onde o formulário é uma SEÇÃO e não um destino.
-   ============================================================ */
-.lead-inline {
-  --lf-navy: #00002B;
-  --lf-off: #F4F4F9;
-  --lf-borda: rgba(0, 0, 42, .16);
-  --lf-erro: #B42318;
-  --lf-ease: cubic-bezier(.16, 1, .3, 1);
-  --lf-fonte: 'Sora', system-ui, -apple-system, sans-serif;
-
-  font-family: var(--lf-fonte);
-  color: var(--lf-navy);
-  line-height: 1.5;
-  width: 100%;
-}
-.lead-inline *, .lead-inline *::before, .lead-inline *::after { box-sizing: border-box }
-.lead-inline .lead-modal__title { font-weight: 700; font-size: 1.3rem; line-height: 1.2;
-  letter-spacing: -.02em; margin: 0; padding: 0 }
-.lead-inline .lead-modal__sub { margin: 6px 0 0; font-size: .875rem; opacity: .65 }
