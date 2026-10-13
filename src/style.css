@@ -57,7 +57,10 @@ body {
   /* 100svh, e não 100vh: no celular o vh conta a barra do navegador
      que some ao rolar, e a página nasce mais alta que a tela */
   min-height: 100svh;
-  padding: clamp(32px, 7vw, 64px) 22px clamp(36px, 8vw, 64px);
+  align-items: center;
+  /* margem de respeito em cima e embaixo: o conteúdo nunca encosta
+     na borda, e o bloco inteiro fica centrado na tela */
+  padding: clamp(52px, 10vh, 88px) 22px clamp(52px, 10vh, 88px);
 }
 
 .card-bio {
@@ -67,13 +70,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* a página é curta e a tela é alta: em vez de empilhar tudo no
-     topo e deixar um vazio embaixo, os três blocos se distribuem
-     pela altura disponível. Os respiros viram espaço elástico com
-     mínimo garantido, então nunca comprimem numa tela baixa. */
-  justify-content: space-between;
-  gap: clamp(36px, 7vh, 72px);
-  flex: 1;
+  /* os blocos ficam AGRUPADOS e o conjunto centrado, em vez de
+     espalhados pelas pontas: o único respiro grande é entre a
+     frase e os botões, que é onde ele faz falta. */
+  justify-content: center;
+  gap: clamp(30px, 5vh, 44px);
 }
 
 .bio-topo, .bio-base {
@@ -177,6 +178,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  /* o descanso pedido: entre a frase e os botões */
+  margin-top: clamp(10px, 2.5vh, 22px);
 }
 
 .link {
@@ -233,6 +236,8 @@ body {
   gap: 12px;
 }
 
+.bio-base { gap: 0; }
+
 .socials a {
   width: 44px;
   height: 44px;
@@ -257,7 +262,7 @@ body {
 .socials svg { width: 18px; height: 18px; }
 
 .footer {
-  margin-top: clamp(26px, 5vw, 34px);
+  margin-top: clamp(22px, 4vw, 30px);
   color: var(--color-primary);
   opacity: 0.65;
   font-size: 0.9rem;
@@ -303,3 +308,24 @@ button.link {
   color: var(--color-text-inverse);
 }
 .link--cta .ext svg { opacity: 0.8; }
+
+/* a linha legal existe para constar e cumprir a LGPD, então ela é
+   deliberadamente discreta: menor, mais apagada e sem peso */
+.legal {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px 10px;
+  color: var(--color-primary);
+  opacity: 0.32;
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.legal a {
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.2s var(--ease);
+}
+.legal a:hover { opacity: 0.7; }

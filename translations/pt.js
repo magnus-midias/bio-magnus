@@ -42,4 +42,6 @@ window.__i18n.pt = {
   'form.erro.nome': 'Preencha seu nome.',
   'form.erro.whatsapp': 'Informe um WhatsApp com DDD.',
   'form.erro.email': 'Informe um e-mail válido.',
+  'footer.dados': 'Magnus Mídias LTDA · CNPJ 49.260.353/0001-10',
+  'footer.privacidade': 'Política de privacidade',
 };

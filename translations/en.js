@@ -42,4 +42,6 @@ window.__i18n.en = {
   'form.erro.nome': 'Please enter your name.',
   'form.erro.whatsapp': 'Enter a WhatsApp number with area code.',
   'form.erro.email': 'Enter a valid email address.',
+  'footer.dados': 'Magnus Mídias LTDA · Company ID 49.260.353/0001-10',
+  'footer.privacidade': 'Privacy policy',
 };
