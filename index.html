@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/css/form-lead.css" />
     <script src="/js/pixel.js"></script>
 
   </head>
@@ -47,16 +48,16 @@
     <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo</a>
 
     <main class="card-bio" id="main-content">
+      <div class="lang-toggle lang-toggle--canto" role="group" aria-label="Idioma">
+        <button class="lang-toggle__btn is-active" data-lang="pt" aria-pressed="true">PT</button>
+        <button class="lang-toggle__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
       <div class="logo-wrap">
         <img class="logo-mark" src="/assets/images/logo-dark.svg" alt="Magnus Mídias" />
       </div>
 
-      <div class="lang-toggle" role="group" aria-label="Idioma">
-        <button class="lang-toggle__btn is-active" data-lang="pt" aria-pressed="true">PT</button>
-        <button class="lang-toggle__btn" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-
-      <p class="tagline" data-i18n="tagline">Funis de aquisição e vendas para o digital, com IA</p>
+      <p class="kicker" data-i18n="kicker">Marketing e IA</p>
+      <p class="tagline" data-i18n="tagline">Funis de aquisição e vendas para o digital</p>
 
       <nav class="links" aria-label="Links principais">
         <button class="link link--cta" type="button" data-open-form>
@@ -105,14 +106,19 @@
     </main>
 
 
-    <!-- ── FORMULÁRIO DE CONTATO ─────────────────────────────────
-         Grava o lead em magnus_app.leads (via /api/lead → n8n) e
-         depois abre o WhatsApp com a mensagem já escrita a partir
-         do que foi respondido. O secret do webhook fica na função
+    <!-- ── FORMULÁRIO DE LEAD DA MAGNUS · componente compartilhado ──
+         FONTE: _compartilhado/form-lead/form.html
+         ⛔ Não editar esta cópia: editar a fonte e rodar sincronizar.py
+
+         Grava o lead (via /api/lead → n8n) e só então abre o WhatsApp
+         com a mensagem já escrita. O secret do webhook fica na função
          serverless, nunca aqui.
+
+         Os data-i18n só têm efeito nos sites bilíngues; onde não há
+         i18n, o texto que está escrito aqui é o que aparece.
     -->
     <div class="lead-modal" id="lead-modal" hidden>
-      <div class="lead-modal__backdrop" data-close-form></div>
+      <button class="lead-modal__backdrop" type="button" data-close-form aria-label="Fechar" tabindex="-1"></button>
       <div class="lead-modal__panel" role="dialog" aria-modal="true" aria-labelledby="lead-title">
         <button class="lead-modal__close" type="button" data-close-form aria-label="Fechar" data-i18n-aria="form.close">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -121,7 +127,7 @@
         <h2 class="lead-modal__title" id="lead-title" data-i18n="form.title">Vamos falar do seu funil</h2>
         <p class="lead-modal__sub" data-i18n="form.sub">Responda o essencial e a conversa já começa no ponto certo.</p>
 
-        <form id="lead-form" novalidate>
+        <form class="lead-form" id="lead-form" novalidate>
           <div class="lead-field">
             <label for="lead-nome" data-i18n="form.nome">Nome</label>
             <input class="lead-input" id="lead-nome" name="nome" type="text" autocomplete="name" required />
@@ -146,13 +152,13 @@
           <div class="lead-field">
             <span class="lead-legend" data-i18n="form.interesse">O que você procura? <span class="lead-opt">(pode marcar mais de um)</span></span>
             <div class="lead-chips" role="group" aria-label="Interesse" data-i18n-aria="form.interesse.aria">
-            <button type="button" class="lead-chip" data-value="trafego" aria-pressed="false" data-i18n="form.chip.trafego">Tráfego pago</button>
-            <button type="button" class="lead-chip" data-value="marketing" aria-pressed="false" data-i18n="form.chip.marketing">Marketing completo</button>
-            <button type="button" class="lead-chip" data-value="site" aria-pressed="false" data-i18n="form.chip.site">Site ou landing page</button>
-            <button type="button" class="lead-chip" data-value="sistema" aria-pressed="false" data-i18n="form.chip.sistema">Sistema ou SaaS</button>
-            <button type="button" class="lead-chip" data-value="crm" aria-pressed="false" data-i18n="form.chip.crm">CRM e automações</button>
-            <button type="button" class="lead-chip" data-value="ia" aria-pressed="false" data-i18n="form.chip.ia">IA aplicada</button>
-            <button type="button" class="lead-chip" data-value="consultoria" aria-pressed="false" data-i18n="form.chip.consultoria">Consultoria</button>
+              <button type="button" class="lead-chip" data-value="trafego" aria-pressed="false" data-i18n="form.chip.trafego">Tráfego pago</button>
+              <button type="button" class="lead-chip" data-value="marketing" aria-pressed="false" data-i18n="form.chip.marketing">Marketing completo</button>
+              <button type="button" class="lead-chip" data-value="site" aria-pressed="false" data-i18n="form.chip.site">Site ou landing page</button>
+              <button type="button" class="lead-chip" data-value="sistema" aria-pressed="false" data-i18n="form.chip.sistema">Sistema ou SaaS</button>
+              <button type="button" class="lead-chip" data-value="crm" aria-pressed="false" data-i18n="form.chip.crm">CRM e automações</button>
+              <button type="button" class="lead-chip" data-value="ia" aria-pressed="false" data-i18n="form.chip.ia">IA aplicada</button>
+              <button type="button" class="lead-chip" data-value="consultoria" aria-pressed="false" data-i18n="form.chip.consultoria">Consultoria</button>
             </div>
             <input type="hidden" id="lead-interesse" name="interesse" />
           </div>
@@ -176,6 +182,7 @@
     <script src="/translations/pt.js"></script>
     <script src="/translations/en.js"></script>
     <script src="/js/i18n.js"></script>
+    <script src="/js/form-lead.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

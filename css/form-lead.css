@@ -1,0 +1,190 @@
+/* ARQUIVO GERADO. Fonte: _compartilhado/form-lead/form.css
+   Nao edite aqui: edite a fonte e rode sincronizar.py */
+/* ============================================================
+   FORMULÁRIO DE LEAD DA MAGNUS · componente compartilhado
+   ------------------------------------------------------------
+   Este arquivo é a FONTE. Ele é copiado para bio-magnus,
+   lp-magnus e cases-magnus por `sincronizar.py`, e o
+   `conferir.py` aborta se as cópias divergirem.
+   ⛔ Não editar a cópia dentro de um projeto: editar aqui.
+
+   Ele declara os PRÓPRIOS tokens com prefixo --lf-, porque os
+   três projetos nomeiam as mesmas cores de formas diferentes
+   (--color-primary na bio, --navy nos cases). Depender do nome
+   de cada um faria o componente quebrar em dois dos três.
+   ============================================================ */
+
+.lead-modal {
+  --lf-navy: #00002B;
+  --lf-off: #F4F4F9;
+  --lf-borda: rgba(0, 0, 42, .16);
+  --lf-erro: #B42318;
+  --lf-ease: cubic-bezier(.16, 1, .3, 1);
+  --lf-fonte: 'Sora', system-ui, -apple-system, sans-serif;
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: var(--lf-fonte);
+  color: var(--lf-navy);
+  line-height: 1.5;
+}
+.lead-modal[hidden] { display: none; }
+.lead-modal *, .lead-modal *::before, .lead-modal *::after { box-sizing: border-box; }
+
+.lead-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 42, .55);
+  backdrop-filter: blur(3px);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.lead-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 32px 28px 24px;
+  border-radius: 24px;
+  background: radial-gradient(125% 95% at 50% 0%, #FCFCFE 0%, #F4F4F9 55%, #EAEAF1 100%);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 42, .5);
+  animation: lead-in .3s var(--lf-ease);
+}
+@media (prefers-reduced-motion: reduce) { .lead-modal__panel { animation: none } }
+
+@keyframes lead-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98) }
+  to   { opacity: 1; transform: none }
+}
+
+/* 44px de alvo: a NN/g mediu que overlay com X claro é fechado
+   por acidente com MENOS frequência, e o alvo mínimo confortável
+   fica em torno de 1cm */
+.lead-modal__close {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 44px; height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 42, .06);
+  color: var(--lf-navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .2s var(--lf-ease);
+}
+.lead-modal__close:hover { background: rgba(0, 0, 42, .12) }
+.lead-modal__close svg { width: 18px; height: 18px }
+
+.lead-modal__title {
+  font-family: var(--lf-fonte);
+  font-weight: 700;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin: 0;
+  padding-right: 44px;
+}
+.lead-modal__sub { margin: 6px 0 0; font-size: .875rem; line-height: 1.5; opacity: .65 }
+
+.lead-form { display: flex; flex-direction: column; gap: 14px; margin-top: 22px }
+.lead-field { display: flex; flex-direction: column; gap: 6px }
+.lead-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+
+.lead-field label, .lead-legend {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+.lead-opt { font-weight: 400; text-transform: none; letter-spacing: 0; opacity: .7 }
+
+.lead-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--lf-borda);
+  border-radius: 6px;
+  background: #fff;
+  font-family: var(--lf-fonte);
+  font-size: .95rem;
+  color: var(--lf-navy);
+  transition: border-color .2s var(--lf-ease), box-shadow .2s var(--lf-ease);
+}
+.lead-input:focus {
+  outline: none;
+  border-color: var(--lf-navy);
+  box-shadow: 0 0 0 3px rgba(0, 0, 42, .08);
+}
+/* o placeholder do telefone não cabe no campo em grade de 2 colunas */
+.lead-input::placeholder { font-size: .85rem; opacity: .5 }
+.lead-input--area { resize: vertical; min-height: 76px; line-height: 1.5 }
+.lead-input--error { border-color: var(--lf-erro); box-shadow: 0 0 0 3px rgba(180, 35, 24, .1) }
+
+.lead-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px }
+.lead-chip {
+  padding: 7px 13px;
+  border: 1px solid rgba(0, 0, 42, .18);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--lf-fonte);
+  font-size: .8125rem;
+  font-weight: 500;
+  color: var(--lf-navy);
+  cursor: pointer;
+  transition: background .2s var(--lf-ease), color .2s var(--lf-ease), border-color .2s var(--lf-ease);
+}
+.lead-chip:hover { background: rgba(0, 0, 42, .05) }
+.lead-chip--active { background: var(--lf-navy); border-color: var(--lf-navy); color: var(--lf-off) }
+
+/* o erro é TEXTO e não só borda vermelha: a borda mostra ONDE,
+   e não O QUE fazer */
+.lead-erro {
+  font-size: .8125rem;
+  line-height: 1.45;
+  color: var(--lf-erro);
+  background: rgba(180, 35, 24, .07);
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin: 0;
+}
+.lead-erro[hidden] { display: none }
+
+.lead-submit {
+  margin-top: 4px;
+  padding: 15px 18px;
+  border: 1px solid var(--lf-navy);
+  border-radius: 12px;
+  background: var(--lf-navy);
+  color: var(--lf-off);
+  font-family: var(--lf-fonte);
+  font-weight: 600;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: transform .2s var(--lf-ease), box-shadow .2s var(--lf-ease), opacity .2s var(--lf-ease);
+}
+.lead-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px -18px rgba(0, 0, 42, .45);
+}
+.lead-submit:disabled { opacity: .6; cursor: progress; transform: none }
+.lead-submit__txt[hidden], .lead-submit__load[hidden] { display: none }
+
+.lead-nota { margin: 10px 0 0; font-size: .75rem; line-height: 1.45; text-align: center; opacity: .5 }
+
+body.modal-open { overflow: hidden }
+
+@media (max-width: 420px) {
+  .lead-modal { padding: 12px }
+  .lead-modal__panel { padding: 28px 20px 20px; max-height: calc(100vh - 24px) }
+  .lead-row { grid-template-columns: 1fr }
+}
