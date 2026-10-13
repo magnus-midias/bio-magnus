@@ -24,7 +24,9 @@
 html,
 body {
   min-height: 100%;
-  background: var(--color-bg);
+  /* gradiente oficial off-white do design system (nunca cor chapada) */
+  background: radial-gradient(125% 95% at 50% 0%, #FCFCFE 0%, #F4F4F9 55%, #EAEAF1 100%);
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-body);
   font-weight: 400;
@@ -232,4 +234,224 @@ body {
 @media (max-width: 420px) {
   .logo-mark { height: 60px; }
   .link { padding: 16px; font-size: 0.9rem; }
+}
+
+
+/* ============================================================
+   FORMULÁRIO DE CONTATO
+   O botão que abre vive na mesma grade dos links, então herda
+   .link e só zera o que o <button> traz de fábrica.
+   ============================================================ */
+
+button.link {
+  font-family: var(--font-display);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+/* o CTA é o único em off-white: ele é o destino que a gente quer */
+.link--cta {
+  background: #fff;
+  color: var(--color-primary);
+}
+.link--cta:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+.link--cta .ext svg { opacity: 0.8; }
+
+.lead-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lead-modal[hidden] { display: none; }
+
+.lead-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 42, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.lead-modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 32px 28px 24px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(125% 95% at 50% 0%, #FCFCFE 0%, #F4F4F9 55%, #EAEAF1 100%);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 42, 0.5);
+  animation: lead-in 0.3s var(--ease);
+}
+
+@keyframes lead-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.lead-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 42, 0.06);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.lead-modal__close:hover { background: rgba(0, 0, 42, 0.12); }
+.lead-modal__close svg { width: 16px; height: 16px; }
+
+.lead-modal__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  padding-right: 32px;
+}
+
+.lead-modal__sub {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-primary);
+  opacity: 0.65;
+}
+
+#lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.lead-field { display: flex; flex-direction: column; gap: 6px; }
+
+.lead-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.lead-field label,
+.lead-legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: 0.75;
+}
+
+.lead-opt {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+.lead-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 42, 0.16);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.lead-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 42, 0.08);
+}
+/* o placeholder do telefone não cabe no campo em grade de duas colunas */
+.lead-input::placeholder { font-size: 0.85rem; opacity: 0.5; }
+
+.lead-input--area { resize: vertical; min-height: 76px; line-height: 1.5; }
+
+.lead-input--error {
+  border-color: #B42318;
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.1);
+}
+
+.lead-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
+
+.lead-chip {
+  padding: 7px 13px;
+  border: 1px solid rgba(0, 0, 42, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.lead-chip:hover { background: rgba(0, 0, 42, 0.05); }
+.lead-chip--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+/* o erro é TEXTO e não só borda vermelha: borda sozinha não diz o que fazer */
+.lead-erro {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #B42318;
+  background: rgba(180, 35, 24, 0.07);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+}
+.lead-erro[hidden] { display: none; }
+
+.lead-submit {
+  margin-top: 4px;
+  padding: 15px 18px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.lead-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px -18px rgba(0, 0, 42, 0.45);
+}
+.lead-submit:disabled { opacity: 0.6; cursor: progress; transform: none; }
+.lead-submit__load[hidden], .lead-submit__txt[hidden] { display: none; }
+
+.lead-nota {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--color-primary);
+  opacity: 0.5;
+}
+
+body.modal-open { overflow: hidden; }
+
+@media (max-width: 420px) {
+  .lead-modal { padding: 12px; }
+  .lead-modal__panel { padding: 28px 20px 20px; max-height: calc(100vh - 24px); }
+  .lead-row { grid-template-columns: 1fr; }
 }

@@ -1,0 +1,6 @@
+# a pasta dist/ e resquicio do Vite: o projeto serve a raiz (outputDirectory ".")
+dist/
+docs/
+node_modules/
+.DS_Store
+*.bak
