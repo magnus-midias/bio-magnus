@@ -11,7 +11,6 @@ window.__i18n.pt = {
   'link.email': 'Enviar E-mail',
   'social.instagram': 'Instagram',
   'social.linkedin': 'LinkedIn',
-  'social.youtube': 'YouTube',
   'footer.tagline': 'Estruturamos funis de aquisição e vendas para o digital, com marketing e IA.',
   'footer.copy': '© 2026 Magnus Mídias',
 

@@ -11,7 +11,6 @@ window.__i18n.en = {
   'link.email': 'Send an Email',
   'social.instagram': 'Instagram',
   'social.linkedin': 'LinkedIn',
-  'social.youtube': 'YouTube',
   'footer.tagline': 'We build digital acquisition and sales funnels, with marketing and AI.',
   'footer.copy': '© 2026 Magnus Mídias',
 
