@@ -20,7 +20,16 @@ window.MagnusLead = (function () {
   'use strict';
 
   var WHATSAPP = '5555999062078';
-  var ENDPOINT = '/api/lead';
+  /* COM barra final de propósito. O cases-magnus tem
+     `trailingSlash: true` no vercel.json (as 14 páginas de case
+     dependem disso), e lá `/api/lead` responde 308 para
+     `/api/lead/`. O fetch segue o 308 preservando método e corpo,
+     mas ele sai com `keepalive` no mesmo turno em que a aba vai
+     para o WhatsApp: uma ida e volta a mais é tempo que o lead
+     pode não ter. Com a barra, os três respondem direto.
+     Medido em 14/10/2026: `/api/lead/` → 400 nos três (resposta
+     certa para corpo inválido), sem nenhum redirect. */
+  var ENDPOINT = '/api/lead/';
   var TRACK_KEY = 'magnus-track';
 
   var cfg = {};
