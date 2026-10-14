@@ -62,6 +62,11 @@ export default async function handler(req, res) {
         email:     String(body.email).slice(0, 200),
         telefone:  String(body.telefone).slice(0, 60),
         interesse: String(body.interesse || '').slice(0, 300),
+        /* o texto LEGÍVEL dos chips, que é o que vai no aviso por
+           e-mail. Até 14/10/2026 ele morria aqui: o formulário mandava
+           os dois e o servidor repassava só o valor técnico, então o
+           Cristian recebia o rótulo interno no lugar da frase. */
+        interesseVisivel: String(body.interesseVisivel || '').slice(0, 300),
         mensagem:  String(body.mensagem || '').slice(0, 2000),
         locale:    body.locale === 'en' ? 'en' : 'pt',
         pagina:    String(body.pagina || '').slice(0, 500),
