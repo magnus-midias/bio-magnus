@@ -358,3 +358,30 @@ button.link {
   transition: opacity 0.2s var(--ease);
 }
 .legal a:hover { opacity: 0.7; }
+
+
+/* ============================================================
+   ACESSIBILIDADE MEDIDA · 15/10/2026
+   Do auditor em presenca-digital/auditar-ux.py, sobre a base de
+   119 diretrizes da skill ui-ux-pro-max.
+   📏 MEDIDO antes e depois, e o resultado não é uniforme:
+     ✅ a tagline virando h1 e a área clicável: ZERO deslocamento
+     ⚠️ subir o corpo de 11 para 12px desloca de 1 a 2px, porque o
+        texto fica mais largo e empurra a caixa. É melhoria de
+        legibilidade paga com dois pixels, e está declarado aqui
+        porque escrever "não muda nada" seria falso.
+   ============================================================ */
+
+/* o título da página virou <h1>, e o h1 do navegador traz tamanho e
+   margem próprios: a classe manda, e o reset já zera a margem */
+h1.tagline { font-size: 1.0625rem; font-weight: 600; }
+
+/* WCAG 2.2 (2.5.8): alvo de toque de 24px. Medido: o link da política
+   tinha 18px de altura. O padding cresce a área, a margem negativa
+   devolve o espaço. */
+.legal a { padding-block: 4px; margin-block: -4px; }
+
+/* corpo de 11px é pequeno demais até para linha legal: 12px é o piso
+   que ainda mantém o contraste de hierarquia com o resto */
+.kicker { font-size: 0.75rem; }
+.legal  { font-size: 0.75rem; }
