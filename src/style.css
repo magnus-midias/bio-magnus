@@ -385,3 +385,22 @@ h1.tagline { font-size: 1.0625rem; font-weight: 600; }
    que ainda mantém o contraste de hierarquia com o resto */
 .kicker { font-size: 0.75rem; }
 .legal  { font-size: 0.75rem; }
+
+/* ── O título letra a letra · 15/10/2026 ─────────────────────
+   O desfoque e a opacidade são de CSS; o JS só reparte o texto e
+   escreve um transition-delay por letra. Zero trabalho por quadro.
+
+   `.palavra` existe para a quebra de linha cair entre palavras:
+   sem ela, cada letra é uma caixa inline-block independente e o
+   navegador quebra no meio de "aquisição". */
+.palavra { display: inline-block; white-space: nowrap; }
+.letra {
+  display: inline-block;
+  opacity: 0; filter: blur(9px);
+  transition: opacity .42s ease, filter .42s ease;
+}
+.letras-prontas .letra { opacity: 1; filter: blur(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .letra { opacity: 1; filter: none; transition: none; }
+}

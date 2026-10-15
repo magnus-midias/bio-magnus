@@ -41,6 +41,10 @@ function setLanguage(lang, save) {
   });
 
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+
+  /* a animação do título escuta isto para se refazer no
+     idioma novo, igual ao site */
+  document.dispatchEvent(new CustomEvent('i18n:aplicado', { detail: { lang: lang } }));
 }
 
 function getCurrentLang() {
