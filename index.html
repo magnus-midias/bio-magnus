@@ -47,11 +47,16 @@
   <body>
     <a class="skip-link" href="#main-content" data-i18n="skip.link">Ir para o conteúdo</a>
 
+    <!-- O toggle de idioma é controle DA PÁGINA, não do cartão: por isso
+         vive fora do cartao e se ancora no topo da página, à direita.
+         Dentro do cartao ele se ancorava nele, que é centrado na
+         tela, e por isso aparecia ao lado da logo. -->
+    <div class="lang-toggle lang-toggle--topo" role="group" aria-label="Idioma">
+      <button class="lang-toggle__btn is-active" data-lang="pt" aria-pressed="true">PT</button>
+      <button class="lang-toggle__btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+
     <main class="card-bio" id="main-content">
-      <div class="lang-toggle lang-toggle--canto" role="group" aria-label="Idioma">
-        <button class="lang-toggle__btn is-active" data-lang="pt" aria-pressed="true">PT</button>
-        <button class="lang-toggle__btn" data-lang="en" aria-pressed="false">EN</button>
-      </div>
       <div class="bio-topo">
       <div class="logo-wrap">
         <img class="logo-mark" src="/assets/images/logo-dark.svg" alt="Magnus Mídias" />
@@ -105,14 +110,20 @@
       </div>
 
       <p class="footer" data-i18n="footer.tagline">Estruturamos funis de aquisição e vendas para o digital, com marketing e IA.</p>
+      </div>
+
+    </main>
+
+    <!-- O rodapé legal existe para constar, e por isso vive no rodapé da
+         PÁGINA e não no fim do cartão: ele não disputa atenção com o CTA,
+         e quem procura por ele sabe onde procurar. -->
+    <footer class="rodape">
       <small class="copy" data-i18n="footer.copy">© 2026 Magnus Mídias</small>
       <small class="legal">
         <span data-i18n="footer.dados">Magnus Mídias LTDA · CNPJ 49.260.353/0001-10</span>
         <a href="https://magnusmidias.com/privacidade" target="_blank" rel="noopener noreferrer" data-i18n="footer.privacidade">Política de privacidade</a>
       </small>
-      </div>
-
-    </main>
+    </footer>
 
 
     <!-- ── FORMULÁRIO DE LEAD DA MAGNUS · componente compartilhado ──

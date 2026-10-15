@@ -53,14 +53,20 @@ ul, ol { list-style: none; }
 
 body {
   display: flex;
+  /* COLUNA, e não linha: o cartão absorve a sobra e mantém o conteúdo
+     centrado, enquanto o rodapé legal fica no fim da página. Em linha,
+     os dois disputariam o mesmo eixo e o rodapé subiria junto. */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   /* 100svh, e não 100vh: no celular o vh conta a barra do navegador
      que some ao rolar, e a página nasce mais alta que a tela */
   min-height: 100svh;
-  align-items: center;
-  /* margem de respeito em cima e embaixo: o conteúdo nunca encosta
-     na borda, e o bloco inteiro fica centrado na tela */
-  padding: clamp(52px, 10vh, 88px) 22px clamp(52px, 10vh, 88px);
+  /* âncora do toggle de idioma, que se posiciona no topo da PÁGINA */
+  position: relative;
+  /* embaixo o respiro passa a ser do próprio rodapé, senão ele flutuaria
+     acima de uma faixa vazia de até 88px */
+  padding: clamp(52px, 10vh, 88px) 22px 0;
 }
 
 .card-bio {
@@ -75,6 +81,10 @@ body {
      frase e os botões, que é onde ele faz falta. */
   justify-content: center;
   gap: clamp(30px, 5vh, 44px);
+  /* cresce para ocupar o espaço que sobra entre o topo e o rodapé, e
+     como ele é flex column com justify-content:center, o conteúdo
+     continua centrado dentro dele */
+  flex: 1 0 auto;
 }
 
 .bio-topo, .bio-base {
@@ -109,11 +119,17 @@ body {
 /* O toggle ocupava a faixa de maior atenção da página (a NN/g mediu
    42% do tempo nos primeiros 20% da altura). Ele serve uma minoria
    dos visitantes, então sai de lá e vai para o canto, devolvendo
-   aquele espaço à tagline e ao CTA. */
-.lang-toggle--canto {
+   aquele espaço à tagline e ao CTA.
+
+   🔴 Em 15/10/2026 ele subiu de vez para o topo da PÁGINA. Antes ele
+   era absolute dentro de .card-bio, que é position:relative e fica
+   CENTRADO na tela: o resultado é que o toggle aparecia ao lado da
+   logo, no meio da página, e não no topo. Agora a âncora é o body. */
+.lang-toggle--topo {
   position: absolute;
   top: 16px;
   right: 20px;
+  z-index: 2;
 }
 .lang-toggle__btn {
   height: 28px;
@@ -272,11 +288,24 @@ body {
 }
 
 .copy {
-  margin-top: 14px;
   color: var(--color-primary);
   opacity: 0.4;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
+}
+
+/* O RODAPÉ DA PÁGINA
+   Fica no fim do documento, abaixo do cartão. Não encolhe (flex-shrink
+   0), senão em tela baixa ele seria o primeiro a ser espremido, e é
+   justamente a linha que precisa constar por LGPD. */
+.rodape {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(26px, 4vh, 38px) 0 18px;
 }
 
 @media (max-width: 400px) {
